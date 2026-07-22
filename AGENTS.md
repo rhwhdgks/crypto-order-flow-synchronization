@@ -26,5 +26,7 @@
 
 ## 다음 연구
 
-L2 order-book의 spread, depth, book imbalance 가용성을 먼저 감사한다. 품질 기준을 통과한
-경우에만 공통 유동성 충격과 체결 주문흐름 동조화를 분리하는 새 protocol을 봉인한다.
+OKX 400레벨 L2의 spread, depth, book imbalance 가용성 감사가 고정 기준을 통과했다.
+봉인된 `common_liquidity_order_flow_v1` protocol에 따라 180일·7자산 feature를 날짜별
+스트리밍 생성하고, 공통 유동성 충격이 체결 주문흐름 동조화의 일부를 설명하는지 OOS에서
+검정한다. L2 결과를 보기 전 protocol과 config seal을 검증해야 한다.

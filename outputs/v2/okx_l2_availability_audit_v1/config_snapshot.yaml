@@ -1,0 +1,39 @@
+study:
+  name: okx_l2_availability_audit_v1
+  purpose: 공통 유동성 충격 연구 전 OKX L2 원자료의 가용성과 복원 품질 감사
+data:
+  catalog_endpoint: https://www.okx.com/priapi/v5/broker/public/trade-data/download-link
+  module: '4'
+  instrument_type: SPOT
+  symbols:
+  - BTC-USDT
+  - ETH-USDT
+  - XRP-USDT
+  - SOL-USDT
+  - DOGE-USDT
+  - ADA-USDT
+  - AVAX-USDT
+  sample_dates:
+  - '2024-04-08'
+  - '2024-10-08'
+  - '2025-04-08'
+  - '2025-10-08'
+  - '2026-04-07'
+  pilot_symbol: ADA-USDT
+  pilot_date: '2024-04-08'
+  archive_dir: data/okx_l2_audit
+audit:
+  expected_book_levels: 400
+  minimum_initial_levels_per_side: 390
+  sample_interval_seconds: 60
+  maximum_start_delay_ms: 1000
+  maximum_end_early_ms: 1000
+  maximum_parse_errors: 0
+  maximum_out_of_order_rows: 0
+  maximum_sampled_crossed_books: 0
+  confirmatory_window_days: 180
+  full_history_days: 730
+output:
+  base_dir: outputs/v2/okx_l2_availability_audit_v1
+logging:
+  level: INFO

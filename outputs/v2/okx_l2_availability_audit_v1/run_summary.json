@@ -1,0 +1,8 @@
+{
+  "study": "okx_l2_availability_audit_v1",
+  "catalog_files_available": 35,
+  "catalog_files_expected": 35,
+  "pilot_rows": 1987014,
+  "bounded_l2_study_ready": true,
+  "directional_alpha_tested": false
+}

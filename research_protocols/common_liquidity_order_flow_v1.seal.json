@@ -1,0 +1,13 @@
+{
+  "sealed_at_utc": "2026-07-22T07:55:46Z",
+  "protocol_sha256": "73effe50db1aa37bb11f71c3f3918fcb0d48335da38d8ac563213091bf07b135",
+  "config_sha256": "bb4cce74f77e7008be6593556b9a6f4511ebbdfb13b0ab7c2322012105eebf07",
+  "results_observed_at_seal": false,
+  "excluded_data_layers": [
+    "news",
+    "reddit",
+    "twitter_x",
+    "sentiment"
+  ],
+  "confirmatory_label": "common_liquidity_explanation_not_directional_alpha"
+}

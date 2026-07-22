@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "pipeline_version": "okx_l2_availability_audit_v1",
+  "git_commit": "cd66d36337d330f5a818affbf4fb2cbbe28916e7",
+  "config_sha256": "4c9b85e166e7d5c0a7bad57315dd17bf017c864fa17176f27cf5b6d043852c59",
+  "input_manifest_sha256": "9bfb760772ae72793f80b10d0996fd052e2409587eb38dbc30ff2c09bfab82d5",
+  "generated_at_utc": "2026-07-22T07:58:21.302377+00:00",
+  "train_start": null,
+  "train_end": null,
+  "oos_start": null,
+  "oos_end": null,
+  "statistical_method": "fixed-date catalog audit; full-day snapshot and delta reconstruction",
+  "random_seed": null
+}

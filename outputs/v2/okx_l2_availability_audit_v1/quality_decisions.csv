@@ -1,0 +1,9 @@
+quality_gate,passed,evidence
+catalog_complete,True,35/35 symbol-date files available
+initial_snapshot_present,True,snapshots=1440
+initial_depth_sufficient,True,"asks=400, bids=400"
+full_day_boundary_coverage,True,"start_delay_ms=6, end_early_ms=522"
+rows_parse_cleanly,True,parse_errors=0
+timestamps_ordered,True,out_of_order_rows=0
+sampled_books_not_crossed,True,sampled_crossed_books=0
+bounded_l2_study_ready,True,all fixed availability and reconstruction gates passed

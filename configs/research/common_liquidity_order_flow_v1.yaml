@@ -1,0 +1,58 @@
+study:
+  name: common_liquidity_order_flow_v1
+  hypothesis: 공통 L2 유동성 스트레스가 동시 주문흐름의 일부를 설명한다
+
+protocol:
+  path: research_protocols/common_liquidity_order_flow_v1.md
+  seal_path: research_protocols/common_liquidity_order_flow_v1.seal.json
+
+data:
+  venue: OKX
+  instrument_type: SPOT
+  l2_module: "4"
+  expected_book_levels: 400
+  symbols:
+    - BTC-USDT
+    - ETH-USDT
+    - XRP-USDT
+    - SOL-USDT
+    - DOGE-USDT
+    - ADA-USDT
+    - AVAX-USDT
+  start_inclusive: "2025-10-08T00:00:00Z"
+  end_exclusive: "2026-04-06T00:00:00Z"
+  bucket_minutes: 15
+  order_flow_residual_path: outputs/v2/okx_order_flow_external_validation_v1/intermediate/aggressor_residual_panel.parquet
+  archive_dir: data/okx_l2_common_liquidity_v1
+
+sample_split:
+  development_start: "2025-10-08T00:00:00Z"
+  development_end_exclusive: "2025-12-07T00:00:00Z"
+  oos_start: "2025-12-07T00:00:00Z"
+  oos_end_exclusive: "2026-04-06T00:00:00Z"
+
+features:
+  minute_sample: first valid reconstructed book at or after each UTC minute
+  spread: spread_bps
+  depth: total top-10 quote depth
+  depth_depletion: negative one-bucket log change in total top-10 quote depth
+  imbalance: absolute top-10 quote-depth imbalance
+  bucket_aggregation: median
+  development_winsor_limits: [0.01, 0.99]
+
+analysis:
+  event_quantile: 0.90
+  null_repetitions: 499
+  bootstrap_repetitions: 499
+  minimum_shift_days: 7
+  random_seed: 20260722
+  fdr_alpha: 0.05
+  primary_minimum_correlation_reduction: 0.02
+  event_overlap_minimum_risk_ratio: 1.25
+  event_overlap_minimum_count: 100
+
+output:
+  base_dir: outputs/v2/common_liquidity_order_flow_v1
+
+logging:
+  level: INFO

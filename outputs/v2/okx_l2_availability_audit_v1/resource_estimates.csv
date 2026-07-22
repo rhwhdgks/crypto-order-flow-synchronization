@@ -1,0 +1,5 @@
+design,days,estimated_compressed_gb,basis
+sampled_catalog_day,1,1.1761300000000001,mean of 5 sampled UTC dates
+bounded_confirmatory_window,180,211.70340000000002,sample-date mean x days
+full_two_year_window,730,858.5749000000001,sample-date mean x days
+sampled_catalog_day_median,1,1.03581,median of 5 sampled UTC dates
