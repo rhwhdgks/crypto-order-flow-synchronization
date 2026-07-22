@@ -1,0 +1,8 @@
+{
+  "status": "complete",
+  "analysis_type": "post_result_sensitivity",
+  "primary_mean_gate_passed": true,
+  "last_snapshot_gate_passed": true,
+  "primary_decision_replaced": false,
+  "news_reddit_sentiment_used": false
+}

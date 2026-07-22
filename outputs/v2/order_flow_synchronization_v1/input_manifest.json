@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "path": "configs/research/order_flow_synchronization_v1.yaml",
+      "size": 1850,
+      "sha256": "e8cd0942d2b6e2027893e3912a7d437ac2a9401b5d08d4b87258a95929615f77"
+    },
+    {
+      "path": "research_protocols/order_flow_synchronization_v1.md",
+      "size": 7683,
+      "sha256": "c3fe524c1f59422072daed616ed7074578101220d8cc283cc2f039eb596c963c"
+    },
+    {
+      "path": "research_protocols/order_flow_synchronization_v1.seal.json",
+      "size": 1031,
+      "sha256": "3de613a7f9a12c0aafd2ac0dc47b9cb755ca6105cb7c4718cea85644e7e7de26"
+    },
+    {
+      "path": "outputs/v2/tick/semantic_validation/raw_2y/intermediate/tick_micro_frame_15m.parquet",
+      "size": 60094168,
+      "sha256": "1b19c5f05d862f8ec6225a5f841da9844d4797eee2cd9668cb8f7b9840320bfd"
+    }
+  ]
+}

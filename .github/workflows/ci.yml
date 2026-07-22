@@ -1,0 +1,25 @@
+name: research-verification
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install
+        run: python -m pip install -e .
+      - name: Unit tests
+        run: PYTHONPATH=src python -m pytest -q
+      - name: Verify Binance primary
+        run: PYTHONPATH=src python scripts/verify_order_flow_synchronization.py
+      - name: Verify OKX external validation
+        run: PYTHONPATH=src python scripts/verify_okx_order_flow_external_validation.py
+      - name: Verify cross-venue study
+        run: PYTHONPATH=src python scripts/verify_cross_venue_order_flow_transmission.py

@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crypto-order-flow-synchronization"
+version = "0.1.0"
+description = "Reproducible cross-asset and cross-venue crypto order-flow synchronization research"
+readme = "README.md"
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = [
+  "cross_venue_order_flow",
+  "okx_order_flow_external_validation",
+  "order_flow_synchronization",
+  "stats_utils",
+  "utils",
+]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

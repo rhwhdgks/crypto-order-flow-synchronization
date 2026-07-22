@@ -1,0 +1,16 @@
+{
+  "sealed_at_utc": "2026-07-21T09:19:37Z",
+  "protocol_sha256": "7fe99cc5a1d9633fd505e446a22484cfc5ef5e49dd3beae0d255398ec8362fcc",
+  "config_sha256": "0ed87fc6beba0d7e10ee9dcb4938dbba37936e5510682125e4caad855d6a0b06",
+  "results_observed_at_seal": false,
+  "schema_pilot_observed_before_seal": true,
+  "schema_pilot_file": "BTC-USDT-trades-2025-04-08.zip",
+  "schema_pilot_statistics_observed": false,
+  "excluded_data_layers": [
+    "news",
+    "reddit",
+    "twitter_x",
+    "sentiment"
+  ],
+  "confirmatory_label": "okx_provider_external_validation_not_intentional_herding"
+}

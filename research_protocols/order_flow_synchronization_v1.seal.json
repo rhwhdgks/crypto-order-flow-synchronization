@@ -1,0 +1,17 @@
+{
+  "sealed_at_utc": "2026-07-21T00:00:00Z",
+  "protocol_sha256": "c3fe524c1f59422072daed616ed7074578101220d8cc283cc2f039eb596c963c",
+  "config_sha256": "e8cd0942d2b6e2027893e3912a7d437ac2a9401b5d08d4b87258a95929615f77",
+  "amendment_1_sha256": "7085bc622f18edecc578a4d79f203b90f20d545032ad3a4ae5eb665b4a771bc3",
+  "amendment_2_sha256": "ae40c871b4438365dcc1397e51f9bf77bbff9f744f2f576a91886b10b2559468",
+  "prior_seal_sha256": "aff013ad036de418ccdb21f4ad7a530bf515ad20a58404cd168cc4401115fe6d",
+  "amendment_reason_1": "calendar-quarter final block had only seven days; changed to calendar half-year before any null draw or result was saved",
+  "amendment_reason_2": "primary futures columns were complete; allowed sparse missing values only in descriptive account-ratio columns and recorded them before any result was saved",
+  "results_observed_at_seal": false,
+  "excluded_data_layers": [
+    "news",
+    "reddit",
+    "sentiment"
+  ],
+  "confirmatory_label": "market_wide_order_flow_synchronization_not_intentional_herding"
+}

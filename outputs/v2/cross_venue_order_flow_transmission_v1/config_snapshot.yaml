@@ -1,0 +1,45 @@
+protocol:
+  path: research_protocols/cross_venue_order_flow_transmission_v1.md
+  seal_path: research_protocols/cross_venue_order_flow_transmission_v1.seal.json
+data:
+  binance_residual_path: outputs/v2/order_flow_synchronization_v1/intermediate/aggressor_residual_panel.parquet
+  okx_residual_path: outputs/v2/okx_order_flow_external_validation_v1/intermediate/aggressor_residual_panel.parquet
+  expected_rows_per_venue: 490560
+  expected_interval_minutes: 15
+  expected_start: '2024-04-08T00:00:00Z'
+  expected_end_exclusive: '2026-04-08T00:00:00Z'
+  symbols:
+  - BTCUSDT
+  - ETHUSDT
+  - XRPUSDT
+  - SOLUSDT
+  - DOGEUSDT
+  - ADAUSDT
+  - AVAXUSDT
+sample_split:
+  development_start: '2024-04-08T00:00:00Z'
+  development_end_exclusive: '2025-04-08T00:00:00Z'
+  oos_start: '2025-04-08T00:00:00Z'
+  oos_end_exclusive: '2026-04-08T00:00:00Z'
+analysis:
+  fdr_alpha: 0.05
+  hac_maxlags: 96
+  null_repetitions: 499
+  null_seed: 20260723
+  minimum_shift_days: 7
+  extreme_event_quantile: 0.95
+  synchronization_minimum_correlation_excess: 0.05
+  synchronization_minimum_concordance_ratio: 1.1
+  synchronization_minimum_event_count: 100
+  lead_horizons_minutes:
+  - 15
+  - 30
+  - 60
+  transmission_primary_horizon_minutes: 15
+  transmission_minimum_standardized_beta: 0.02
+  bootstrap_repetitions: 499
+  bootstrap_seed: 20260724
+output:
+  base_dir: outputs/v2/cross_venue_order_flow_transmission_v1
+logging:
+  level: INFO

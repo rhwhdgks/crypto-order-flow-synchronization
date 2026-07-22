@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "pipeline_version": "cross_venue_order_flow_transmission_v1",
+  "git_commit": "0232a04fd1e314e1f075aa7ba077672ca943205c",
+  "git_worktree_dirty": true,
+  "config_sha256": "00b2e7ad00358c62047a3beb1c80c02407476757d2611f34957e47c61bcfc75f",
+  "input_manifest_sha256": "541d8bba9c0c6df29ba083ef05dc79357c44fe2ecd1441a59117ecf3bc3f247e",
+  "generated_at_utc": "2026-07-22T06:44:57.894365+00:00",
+  "train_start": "2024-04-08T00:00:00Z",
+  "train_end": "2025-04-08T00:00:00Z",
+  "oos_start": "2025-04-08T00:00:00Z",
+  "oos_end": "2026-04-08T00:00:00Z",
+  "statistical_method": "half-year circular-shift null; HAC OLS; UTC-day bootstrap",
+  "random_seed": 20260723,
+  "status": "corrected"
+}

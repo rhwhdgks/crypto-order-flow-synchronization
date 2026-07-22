@@ -1,0 +1,5 @@
+decision,passed,classification
+cross_venue_synchronization,True,cross_venue_synchronization_supported
+stable_directional_transmission,False,not_supported
+intentional_herding_identification,False,not_identified_without_participant_ids
+directional_alpha,False,not_tested

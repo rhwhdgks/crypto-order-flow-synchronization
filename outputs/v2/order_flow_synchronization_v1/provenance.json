@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "pipeline_version": "order-flow-synchronization-v1",
+  "git_commit": "0232a04fd1e314e1f075aa7ba077672ca943205c",
+  "git_worktree_dirty": true,
+  "config_sha256": "4b2d45a7c207d9e375604362bc9e1718c4e9650b123d460e5d54d3988a20254c",
+  "input_manifest_sha256": "0961418745f48860fd370f4a46f9096d4ca5c6b2f0b6010b9153433440446315",
+  "generated_at_utc": "2026-07-21T08:55:57.542346+00:00",
+  "train_start": "2024-04-08T00:00:00Z",
+  "train_end": "2025-04-08T00:00:00Z",
+  "oos_start": "2025-04-08T00:00:00Z",
+  "oos_end": "2026-04-08T00:00:00Z",
+  "statistical_method": "development-fitted residualization; 499 half-year/day circular shifts; HAC lead-lag; 499 UTC-day block bootstraps; two-test futures confirmation",
+  "random_seed": 20260721,
+  "status": "corrected"
+}

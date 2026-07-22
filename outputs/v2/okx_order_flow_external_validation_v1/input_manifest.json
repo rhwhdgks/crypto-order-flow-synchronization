@@ -1,0 +1,44 @@
+{
+  "files": [
+    {
+      "path": "configs/research/okx_order_flow_external_validation_v1.yaml",
+      "size": 1882,
+      "sha256": "31ba6eeb56109b2070a355e35dcf0005e1cea44b2c34f015cbeeac7bfa5f6c5f"
+    },
+    {
+      "path": "research_protocols/okx_order_flow_external_validation_v1.md",
+      "size": 5148,
+      "sha256": "7fe99cc5a1d9633fd505e446a22484cfc5ef5e49dd3beae0d255398ec8362fcc"
+    },
+    {
+      "path": "research_protocols/okx_order_flow_external_validation_v1.seal.json",
+      "size": 1196,
+      "sha256": "9efc3ecb637608330f18cd4fed3a76dd554594dff3f0311b16f36ad5ec65f82b"
+    },
+    {
+      "path": "research_protocols/okx_order_flow_external_validation_v1_amendment_1.md",
+      "size": 1348,
+      "sha256": "c3a54c3dba4e9aee52374f852d93ec992c1ecae0b1a8db04953fc52fdb1056b3"
+    },
+    {
+      "path": "research_protocols/okx_order_flow_external_validation_v1_amendment_2.md",
+      "size": 1485,
+      "sha256": "7cda0ae162e064d5bfffe57963cd6881278a6f508e3da19dd77c406bc86343a7"
+    },
+    {
+      "path": "research_protocols/okx_order_flow_external_validation_v1.pre_timezone.seal.json",
+      "size": 582,
+      "sha256": "3bbfb06aca94ac2f41cf9c8b386edef52ef0cc3775024ede89634652b654dc5a"
+    },
+    {
+      "path": "research_protocols/okx_order_flow_external_validation_v1.pre_composite.seal.json",
+      "size": 927,
+      "sha256": "4826774d4cbdd2946d0ea80bfefaa47cd6faa9f453c40b5293dccf0e3b4a7f38"
+    },
+    {
+      "path": "outputs/v2/okx_order_flow_external_validation_v1/source_file_manifest.csv",
+      "size": 68940,
+      "sha256": "174bd44fdb124d282176604a49f4a6d944230a249c0fb1c8ad2c4583457b3187"
+    }
+  ]
+}

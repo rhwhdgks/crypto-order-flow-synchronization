@@ -1,0 +1,11 @@
+{
+  "study": "cross_venue_order_flow_transmission_v1",
+  "rows_per_venue": 490560,
+  "timestamps": 70080,
+  "oos_timestamps": 35040,
+  "cross_venue_synchronization": "cross_venue_synchronization_supported",
+  "stable_directional_transmission": "not_supported",
+  "intentional_herding_identified": false,
+  "directional_alpha_tested": false,
+  "news_reddit_sentiment_used": false
+}

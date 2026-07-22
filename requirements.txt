@@ -1,0 +1,8 @@
+numpy>=1.26.0
+pandas>=2.2.0
+scipy>=1.11.0
+statsmodels>=0.14.1
+matplotlib>=3.8.0
+pyarrow>=17.0.0
+PyYAML>=6.0.1
+pytest>=8.0.0

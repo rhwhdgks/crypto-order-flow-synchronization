@@ -1,0 +1,12 @@
+{
+  "sealed_at_utc": "2026-07-22T00:00:00Z",
+  "protocol_sha256": "67dc80ad63ee768d4241c0d47daf8b04c0e0e688e4ccb72482f41d264f4d1b13",
+  "config_sha256": "f8d5e058ed8244c335dc16b69ef089d83cfc343106dc95aad12c950cc3d1a057",
+  "results_observed_at_seal": false,
+  "excluded_data_layers": [
+    "news",
+    "reddit",
+    "sentiment"
+  ],
+  "confirmatory_label": "cross_venue_order_flow_synchronization_not_intentional_herding"
+}

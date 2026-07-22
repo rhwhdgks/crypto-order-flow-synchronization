@@ -1,0 +1,2 @@
+rows,timestamps,symbols,start,end,aggressor_available_share,minimum_rows_per_symbol,maximum_rows_per_symbol,complete_intersection
+490560,70080,7,2024-04-08 00:00:00+00:00,2026-04-07 23:45:00+00:00,1.0,70080,70080,True

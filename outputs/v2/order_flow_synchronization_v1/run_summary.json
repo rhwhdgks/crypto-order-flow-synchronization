@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "final_classification": "synchronization_supported_without_directional_cascade",
+  "spot_synchronization_passed": true,
+  "major_to_alt_cascade_passed": false,
+  "futures_confirmation_passed": true,
+  "intentional_herding_identified": false,
+  "directional_alpha_tested": false,
+  "news_reddit_sentiment_used": false
+}

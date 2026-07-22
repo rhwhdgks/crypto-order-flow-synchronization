@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "pipeline_version": "okx-order-flow-external-validation-v1",
+  "git_commit": "0232a04fd1e314e1f075aa7ba077672ca943205c",
+  "git_worktree_dirty": true,
+  "config_sha256": "bdd2576f5b1822fc5eae66a6793e34f1cd157a60aab1c80d41d0a1be168f156b",
+  "input_manifest_sha256": "8458d5cc9067e70e22336135a4e45dc979ba66cc436e0991087ad2c95fcc3688",
+  "generated_at_utc": "2026-07-21T09:44:11.123450+00:00",
+  "train_start": "2024-04-08T00:00:00Z",
+  "train_end": "2025-04-08T00:00:00Z",
+  "oos_start": "2025-04-08T00:00:00Z",
+  "oos_end": "2026-04-08T00:00:00Z",
+  "statistical_method": "provider external validation; development-fitted residualization; 499 half-year/day circular shifts; HAC lead-lag; 499 UTC-day block bootstraps",
+  "random_seed": 20260723,
+  "status": "corrected"
+}

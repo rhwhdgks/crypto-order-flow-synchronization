@@ -1,0 +1,9 @@
+family,metric,binance_estimate,okx_estimate,okx_to_binance_ratio,binance_gate_pass,okx_gate_pass
+synchronization,mean_pairwise_correlation,0.1434512066949236,0.11856765809671137,0.8265364985661512,True,True
+synchronization,extreme_alignment_rate,0.2652397260273972,0.24220890410958903,0.9131697869593288,True,True
+lead_lag,major_to_alt_15m,0.0144217549042278,0.001272374300923521,,,
+lead_lag,alt_to_major_15m,-0.0028281644483674,-0.003138520439004897,,,
+lead_lag,major_to_alt_30m,-0.003035628475695,-0.019956812194936807,,,
+lead_lag,alt_to_major_30m,-0.0208539310738388,-0.01679868762941574,,,
+lead_lag,major_to_alt_60m,-0.0068653952607766,-0.019499513303715937,,,
+lead_lag,alt_to_major_60m,-0.0216287978019694,-0.004866912298762257,,,

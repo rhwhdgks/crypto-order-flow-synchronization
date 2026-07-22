@@ -1,0 +1,13 @@
+{
+  "verified": true,
+  "preregistration_seal_verified": true,
+  "artifact_count_checked": 13,
+  "decision_recomputation_match": true,
+  "synchronization_family_size": 2,
+  "lead_lag_family_size": 6,
+  "null_repetitions": 499,
+  "bootstrap_repetitions": 499,
+  "intentional_herding_identified": false,
+  "directional_alpha_tested": false,
+  "news_reddit_sentiment_used": false
+}

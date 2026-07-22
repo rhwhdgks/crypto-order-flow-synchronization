@@ -1,0 +1,78 @@
+protocol:
+  path: research_protocols/okx_order_flow_external_validation_v1.md
+  seal_path: research_protocols/okx_order_flow_external_validation_v1.seal.json
+
+source:
+  provider: OKX
+  dataset: official_historical_spot_trade_history
+  source_archive_timezone: Asia/Shanghai
+  base_url: https://static.okx.com/cdn/okex/traderecords/trades/monthly
+  local_data_dir: data/okx_tick_archive
+  timeout_seconds: 300
+  retries: 5
+  retry_backoff_seconds: 3
+  chunksize: 1000000
+  overwrite_existing: false
+
+data:
+  expected_interval_minutes: 15
+  expected_start: "2024-04-08T00:00:00Z"
+  expected_end_exclusive: "2026-04-08T00:00:00Z"
+  minimum_complete_intersection_share: 0.999
+  symbols:
+    - BTC-USDT
+    - ETH-USDT
+    - XRP-USDT
+    - SOL-USDT
+    - DOGE-USDT
+    - ADA-USDT
+    - AVAX-USDT
+  major_symbols:
+    - BTC-USDT
+    - ETH-USDT
+  alt_symbols:
+    - XRP-USDT
+    - SOL-USDT
+    - DOGE-USDT
+    - ADA-USDT
+    - AVAX-USDT
+
+sample_split:
+  development_start: "2024-04-08T00:00:00Z"
+  development_end_exclusive: "2025-04-08T00:00:00Z"
+  oos_start: "2025-04-08T00:00:00Z"
+  oos_end_exclusive: "2026-04-08T00:00:00Z"
+
+analysis:
+  fdr_alpha: 0.05
+  hac_maxlags: 96
+  alignment_minimum_assets: 6
+  null_repetitions: 499
+  null_seed: 20260723
+  minimum_shift_days: 7
+  synchronization_minimum_correlation_excess: 0.02
+  synchronization_minimum_alignment_ratio: 1.10
+  lead_horizons_minutes: [15, 30, 60]
+  cascade_primary_horizon_minutes: 15
+  cascade_minimum_standardized_beta: 0.02
+  bootstrap_repetitions: 499
+  bootstrap_seed: 20260724
+  residual_controls:
+    - own_return
+    - abs_own_return
+    - loo_market_return
+    - abs_loo_market_return
+    - log_quote_volume
+    - log_transaction_count
+    - hour_sin
+    - hour_cos
+    - weekday_fixed_effects
+
+download:
+  max_workers: 2
+
+output:
+  base_dir: outputs/v2/okx_order_flow_external_validation_v1
+
+logging:
+  level: INFO

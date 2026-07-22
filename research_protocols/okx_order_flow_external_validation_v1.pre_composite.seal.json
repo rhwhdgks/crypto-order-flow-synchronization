@@ -1,0 +1,19 @@
+{
+  "sealed_at_utc": "2026-07-21T09:25:58Z",
+  "protocol_sha256": "7fe99cc5a1d9633fd505e446a22484cfc5ef5e49dd3beae0d255398ec8362fcc",
+  "config_sha256": "31ba6eeb56109b2070a355e35dcf0005e1cea44b2c34f015cbeeac7bfa5f6c5f",
+  "amendment_1_sha256": "c3a54c3dba4e9aee52374f852d93ec992c1ecae0b1a8db04953fc52fdb1056b3",
+  "prior_seal_sha256": "3bbfb06aca94ac2f41cf9c8b386edef52ef0cc3775024ede89634652b654dc5a",
+  "amendment_reason_1": "OKX source archive filenames use Asia/Shanghai calendar boundaries; UTC analysis timestamps and all statistical gates remain unchanged",
+  "results_observed_at_seal": false,
+  "schema_pilot_observed_before_seal": true,
+  "schema_pilot_file": "BTC-USDT-trades-2025-04-08.zip",
+  "schema_pilot_statistics_observed": false,
+  "excluded_data_layers": [
+    "news",
+    "reddit",
+    "twitter_x",
+    "sentiment"
+  ],
+  "confirmatory_label": "okx_provider_external_validation_not_intentional_herding"
+}

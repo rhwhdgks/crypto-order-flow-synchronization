@@ -1,0 +1,14 @@
+{
+  "files": [
+    {
+      "path": "outputs/v2/order_flow_synchronization_v1/intermediate/aggressor_residual_panel.parquet",
+      "size": 17838476,
+      "sha256": "c0b3b30504645adb420ca18b58a8b897f13be66697479214e8e8330be5565b71"
+    },
+    {
+      "path": "outputs/v2/okx_order_flow_external_validation_v1/intermediate/aggressor_residual_panel.parquet",
+      "size": 17827518,
+      "sha256": "2e60388bf01dd0e7a7ede6453e3ca2c427524087174b39b85b3943db82821b09"
+    }
+  ]
+}

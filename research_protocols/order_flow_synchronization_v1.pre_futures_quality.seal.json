@@ -1,0 +1,15 @@
+{
+  "sealed_at_utc": "2026-07-21T00:00:00Z",
+  "protocol_sha256": "357ce71df8a9717ab56b453639468779e5970a0b310b53d8403949dde498cb73",
+  "config_sha256": "e8cd0942d2b6e2027893e3912a7d437ac2a9401b5d08d4b87258a95929615f77",
+  "amendment_1_sha256": "7085bc622f18edecc578a4d79f203b90f20d545032ad3a4ae5eb665b4a771bc3",
+  "prior_seal_sha256": "565d3274200b65848459b7638385fd2d15a8c515c1b6b7beb9c1ecc91028deac",
+  "amendment_reason": "calendar-quarter final block had only seven days; changed to calendar half-year before any null draw or result was saved",
+  "results_observed_at_seal": false,
+  "excluded_data_layers": [
+    "news",
+    "reddit",
+    "sentiment"
+  ],
+  "confirmatory_label": "market_wide_order_flow_synchronization_not_intentional_herding"
+}
