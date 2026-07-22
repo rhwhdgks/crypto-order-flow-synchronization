@@ -111,10 +111,29 @@ def build_catalog_payload(symbols: Iterable[str], value: str | date, config: Map
 
 
 def fetch_archive_catalog(config: Mapping, timeout_seconds: int = 60) -> pd.DataFrame:
-    endpoint = str(config["data"]["catalog_endpoint"])
+    return fetch_archive_catalog_for_dates(
+        config["data"]["symbols"],
+        config["data"]["sample_dates"],
+        endpoint=str(config["data"]["catalog_endpoint"]),
+        module=str(config["data"]["module"]),
+        instrument_type=str(config["data"]["instrument_type"]),
+        timeout_seconds=timeout_seconds,
+    )
+
+
+def fetch_archive_catalog_for_dates(
+    symbols: Iterable[str],
+    sample_dates: Iterable[str],
+    endpoint: str,
+    module: str = "4",
+    instrument_type: str = "SPOT",
+    timeout_seconds: int = 60,
+) -> pd.DataFrame:
+    symbols = list(symbols)
     rows: list[dict] = []
-    for sample_date in config["data"]["sample_dates"]:
-        payload = build_catalog_payload(config["data"]["symbols"], sample_date, config)
+    payload_config = {"data": {"module": module, "instrument_type": instrument_type}}
+    for sample_date in sample_dates:
+        payload = build_catalog_payload(symbols, sample_date, payload_config)
         request = urllib.request.Request(
             endpoint,
             data=json.dumps(payload).encode("utf-8"),
@@ -126,7 +145,7 @@ def fetch_archive_catalog(config: Mapping, timeout_seconds: int = 60) -> pd.Data
             raise RuntimeError(f"OKX catalog request failed: {result}")
         details = result.get("data", {}).get("details", [])
         by_symbol = {entry.get("instId"): entry for entry in details}
-        for symbol in config["data"]["symbols"]:
+        for symbol in symbols:
             detail = by_symbol.get(symbol, {})
             groups = detail.get("groupDetails") or []
             group = groups[0] if groups else {}

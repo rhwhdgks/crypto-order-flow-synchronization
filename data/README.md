@@ -59,3 +59,7 @@ archive 내부는 JSONL이고 각 행에 `instId`, `action`, `ts`, `asks`, `bids
 7개 자산 전체 압축 전송량은 약 212GB로 추정된다. 구현 시 하루 archive를 스트리밍해
 minute/15-minute feature를 만든 뒤 원본을 제거할 수 있어야 하며, 공개 Git에는 원자료를
 추가하지 않는다.
+
+수집 진행률은 `outputs/v2/common_liquidity_order_flow_v1/collection_state.json`과
+`collection_progress.csv`에 기록된다. 이 두 파일과 중간 parquet는 장기 수집 중에는 Git에
+올리지 않으며, 최종 분석 완료 후 고정된 요약 결과만 공개한다.

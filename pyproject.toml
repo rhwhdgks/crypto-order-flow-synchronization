@@ -15,6 +15,7 @@ package-dir = {"" = "src"}
 py-modules = [
   "cross_venue_order_flow",
   "okx_l2_audit",
+  "okx_l2_collection",
   "okx_order_flow_external_validation",
   "order_flow_synchronization",
   "stats_utils",

@@ -34,6 +34,10 @@ data/**
 *.tmp
 *.part
 
+# Long-running L2 collection state is local until the confirmatory study completes.
+outputs/v2/common_liquidity_order_flow_v1/collection_progress.csv
+outputs/v2/common_liquidity_order_flow_v1/collection_state.json
+
 # Null draws are intentionally small and required by result verifiers.
 *.parquet
 !outputs/v2/order_flow_synchronization_v1/synchronization_null_draws.parquet

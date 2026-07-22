@@ -80,6 +80,19 @@ L2 감사는 공식 카탈로그를 다시 조회하고, 약 44MB인 ADA 하루 
 PYTHONPATH=src python scripts/run_okx_l2_availability_audit.py
 ```
 
+봉인된 180일 L2 수집은 먼저 dry-run으로 작업 수를 확인한 뒤 실행합니다. 정상 cache가
+있는 파일은 건너뛰므로 같은 명령으로 중단 지점부터 재개할 수 있습니다.
+
+```bash
+PYTHONPATH=src python scripts/collect_common_liquidity_l2.py
+PYTHONPATH=src python scripts/collect_common_liquidity_l2.py --execute
+PYTHONPATH=src python scripts/show_l2_collection_status.py
+```
+
+실행 중에는 하루·자산별 checksum, 품질 결과와 96개 15분 feature를 먼저 저장한 후 원본
+archive를 삭제합니다. 컴퓨터가 꺼지면 자동 실행되지는 않지만, 두 번째 명령을 다시 실행하면
+이미 검증된 cache 다음부터 계속됩니다.
+
 ## 전체 재실행
 
 대용량 원자료는 Git에 포함하지 않습니다. 필요한 로컬 경로와 입력 schema는

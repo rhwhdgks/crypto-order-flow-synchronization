@@ -15,6 +15,7 @@ from okx_l2_audit import (
     validate_common_liquidity_config,
     verify_common_liquidity_seal,
 )
+from okx_l2_collection import aggregate_minute_book_features, build_collection_jobs
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -110,3 +111,34 @@ def test_common_liquidity_protocol_is_still_sealed() -> None:
     validate_common_liquidity_config(config)
     verification = verify_common_liquidity_seal(protocol_path, config_path, seal_path)
     assert verification["verified"] is True
+
+
+def test_minute_features_aggregate_to_fifteen_minutes() -> None:
+    timestamps = pd.date_range("2025-10-08", periods=30, freq="min", tz="UTC")
+    samples = pd.DataFrame(
+        {
+            "timestamp": timestamps,
+            "empty": False,
+            "crossed": False,
+            "spread_bps": range(30),
+            "ask_depth_quote_10": 100.0,
+            "bid_depth_quote_10": 200.0,
+            "book_imbalance_10": 1 / 3,
+        }
+    )
+    result = aggregate_minute_book_features(samples, "ADA-USDT", 15)
+    assert len(result) == 2
+    assert result["observed_minutes"].tolist() == [15, 15]
+    assert result["top10_depth_quote"].tolist() == [300.0, 300.0]
+    assert result["spread_bps"].tolist() == [7.0, 22.0]
+
+
+def test_sealed_collection_has_1260_jobs() -> None:
+    config = yaml.safe_load(
+        (PROJECT_ROOT / "configs/research/common_liquidity_order_flow_v1.yaml").read_text(
+            encoding="utf-8"
+        )
+    )
+    jobs = build_collection_jobs(config)
+    assert len(jobs) == 180 * 7
+    assert jobs["date"].nunique() == 180
