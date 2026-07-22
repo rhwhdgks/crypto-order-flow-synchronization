@@ -93,6 +93,19 @@ PYTHONPATH=src python scripts/show_l2_collection_status.py
 archive를 삭제합니다. 컴퓨터가 꺼지면 자동 실행되지는 않지만, 두 번째 명령을 다시 실행하면
 이미 검증된 cache 다음부터 계속됩니다.
 
+장기 수집은 `ops/systemd/crypto-order-flow-l2-collector.service`를 user service로 등록할 수
+있습니다. 등록 후에는 터미널을 닫아도 계속 실행되며 재부팅 후 네트워크가 연결되면
+자동으로 남은 cache부터 재개합니다.
+
+```bash
+mkdir -p ~/.config/systemd/user
+ln -sf "$PWD/ops/systemd/crypto-order-flow-l2-collector.service" \
+  ~/.config/systemd/user/crypto-order-flow-l2-collector.service
+systemctl --user daemon-reload
+systemctl --user enable --now crypto-order-flow-l2-collector.service
+systemctl --user status crypto-order-flow-l2-collector.service
+```
+
 ## 전체 재실행
 
 대용량 원자료는 Git에 포함하지 않습니다. 필요한 로컬 경로와 입력 schema는

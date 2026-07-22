@@ -1,0 +1,19 @@
+[Unit]
+Description=OKX L2 common-liquidity feature collector
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/findalpha/trading/crypto-order-flow-synchronization
+Environment=PYTHONPATH=src
+Environment=PYTHONUNBUFFERED=1
+ExecStart=%h/findalpha/trading/crypto-order-flow-synchronization/.venv/bin/python scripts/collect_common_liquidity_l2.py --execute
+Restart=on-failure
+RestartSec=60
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=6
+
+[Install]
+WantedBy=default.target

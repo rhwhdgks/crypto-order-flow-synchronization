@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable, Mapping
 
@@ -208,6 +209,7 @@ def collect_l2_features(
                 "sample_count": int(summary["sample_count"]),
                 "bucket_rows": len(features),
                 "cache_sha256": _sha256(cache_path),
+                "completed_at_utc": datetime.now(timezone.utc).isoformat(),
             }
             _atomic_json(metadata, metadata_path)
             if collection["source"]["delete_archive_after_cache"]:
@@ -286,7 +288,12 @@ def _state_payload(jobs: pd.DataFrame, progress: pd.DataFrame, status: str) -> d
     complete = progress.loc[progress["status"].eq("complete")] if not progress.empty else progress
     completed = len(complete)
     quality_passed = int(complete.get("quality_passed", pd.Series(dtype=bool)).sum())
-    latest = complete.sort_values(["date", "symbol"]).tail(1)
+    if "completed_at_utc" in complete and complete["completed_at_utc"].notna().any():
+        latest = complete.loc[complete["completed_at_utc"].notna()].sort_values(
+            "completed_at_utc"
+        ).tail(1)
+    else:
+        latest = complete.sort_values(["date", "symbol"]).tail(1)
     return {
         "status": status,
         "completed_files": completed,
