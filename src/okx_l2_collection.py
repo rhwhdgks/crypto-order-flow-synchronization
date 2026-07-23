@@ -134,7 +134,9 @@ def collect_l2_features(
     progress = _load_progress(progress_path)
     progress = _recover_completed_caches(progress, jobs, cache_root)
     _atomic_csv(progress, progress_path)
-    completed_keys = set(
+    terminal = progress["status"].isin(["complete", "unavailable"])
+    terminal_keys = set(zip(progress.loc[terminal, "date"], progress.loc[terminal, "symbol"]))
+    complete_keys = set(
         zip(
             progress.loc[progress["status"].eq("complete"), "date"],
             progress.loc[progress["status"].eq("complete"), "symbol"],
@@ -145,8 +147,13 @@ def collect_l2_features(
         pending_symbols = [
             symbol
             for symbol in date_jobs["symbol"]
-            if (sample_date, symbol) not in completed_keys
-            or not _cache_is_valid(_cache_path(cache_root, symbol, sample_date), symbol, sample_date)
+            if (sample_date, symbol) not in terminal_keys
+            or (
+                (sample_date, symbol) in complete_keys
+                and not _cache_is_valid(
+                    _cache_path(cache_root, symbol, sample_date), symbol, sample_date
+                )
+            )
         ]
         if not pending_symbols:
             continue
@@ -158,11 +165,24 @@ def collect_l2_features(
             instrument_type=str(research["data"]["instrument_type"]),
             timeout_seconds=int(collection["source"]["timeout_seconds"]),
         )
-        if not bool(catalog["available"].all()):
-            missing = catalog.loc[~catalog["available"], "symbol"].tolist()
-            raise FileNotFoundError(f"Missing OKX L2 archives for {sample_date}: {missing}")
+        unavailable = catalog.loc[~catalog["available"]]
+        for missing_row in unavailable.itertuples(index=False):
+            unavailable_record = {
+                "date": sample_date,
+                "symbol": str(missing_row.symbol),
+                "status": "unavailable",
+                "quality_passed": False,
+                "quality_failures": "archive_unavailable",
+                "completed_at_utc": datetime.now(timezone.utc).isoformat(),
+            }
+            progress = _upsert_progress(progress, unavailable_record)
+            terminal_keys.add((sample_date, str(missing_row.symbol)))
+            _atomic_csv(progress, progress_path)
+            _collection_state(jobs, progress, "running", progress_callback, state_path)
         # Small files first make the initial smoke test and resumptions fast.
-        for catalog_row in catalog.sort_values("size_mb").itertuples(index=False):
+        for catalog_row in catalog.loc[catalog["available"]].sort_values("size_mb").itertuples(
+            index=False
+        ):
             if maximum_new_files is not None and new_files >= maximum_new_files:
                 return _collection_state(jobs, progress, "paused", progress_callback, state_path)
             symbol = str(catalog_row.symbol)
@@ -216,7 +236,8 @@ def collect_l2_features(
                 archive_path.unlink()
             progress = _upsert_progress(progress, {**metadata, "status": "complete"})
             _atomic_csv(progress, progress_path)
-            completed_keys.add((sample_date, symbol))
+            terminal_keys.add((sample_date, symbol))
+            complete_keys.add((sample_date, symbol))
             new_files += 1
             _collection_state(jobs, progress, "running", progress_callback, state_path)
 
@@ -285,15 +306,20 @@ def _collection_state(
 
 
 def _state_payload(jobs: pd.DataFrame, progress: pd.DataFrame, status: str) -> dict:
-    complete = progress.loc[progress["status"].eq("complete")] if not progress.empty else progress
-    completed = len(complete)
-    quality_passed = int(complete.get("quality_passed", pd.Series(dtype=bool)).sum())
-    if "completed_at_utc" in complete and complete["completed_at_utc"].notna().any():
-        latest = complete.loc[complete["completed_at_utc"].notna()].sort_values(
+    terminal = (
+        progress.loc[progress["status"].isin(["complete", "unavailable"])]
+        if not progress.empty
+        else progress
+    )
+    completed = len(terminal)
+    quality_passed = int(terminal.get("quality_passed", pd.Series(dtype=bool)).sum())
+    unavailable = int(terminal["status"].eq("unavailable").sum()) if not terminal.empty else 0
+    if "completed_at_utc" in terminal and terminal["completed_at_utc"].notna().any():
+        latest = terminal.loc[terminal["completed_at_utc"].notna()].sort_values(
             "completed_at_utc"
         ).tail(1)
     else:
-        latest = complete.sort_values(["date", "symbol"]).tail(1)
+        latest = terminal.sort_values(["date", "symbol"]).tail(1)
     return {
         "status": status,
         "completed_files": completed,
@@ -301,6 +327,7 @@ def _state_payload(jobs: pd.DataFrame, progress: pd.DataFrame, status: str) -> d
         "progress_share": completed / len(jobs),
         "quality_passing_files": quality_passed,
         "quality_failing_files": completed - quality_passed,
+        "unavailable_files": unavailable,
         "last_completed_date": None if latest.empty else str(latest.iloc[0]["date"]),
         "last_completed_symbol": None if latest.empty else str(latest.iloc[0]["symbol"]),
     }

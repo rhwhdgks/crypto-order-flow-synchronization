@@ -15,7 +15,11 @@ from okx_l2_audit import (
     validate_common_liquidity_config,
     verify_common_liquidity_seal,
 )
-from okx_l2_collection import aggregate_minute_book_features, build_collection_jobs
+from okx_l2_collection import (
+    _state_payload,
+    aggregate_minute_book_features,
+    build_collection_jobs,
+)
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -142,3 +146,27 @@ def test_sealed_collection_has_1260_jobs() -> None:
     jobs = build_collection_jobs(config)
     assert len(jobs) == 180 * 7
     assert jobs["date"].nunique() == 180
+
+
+def test_collection_state_counts_unavailable_as_terminal_failure() -> None:
+    jobs = pd.DataFrame(
+        [
+            {"date": "2025-11-08", "symbol": "XRP-USDT"},
+            {"date": "2025-11-08", "symbol": "BTC-USDT"},
+        ]
+    )
+    progress = pd.DataFrame(
+        [
+            {
+                "date": "2025-11-08",
+                "symbol": "XRP-USDT",
+                "status": "unavailable",
+                "quality_passed": False,
+                "completed_at_utc": "2026-07-23T00:00:00+00:00",
+            }
+        ]
+    )
+    state = _state_payload(jobs, progress, "running")
+    assert state["completed_files"] == 1
+    assert state["unavailable_files"] == 1
+    assert state["quality_failing_files"] == 1
