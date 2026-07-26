@@ -14,6 +14,8 @@
 - Binance와 OKX의 거래소 내부 동조화는 지지된다.
 - Binance-OKX 교차거래소 동시 동조화는 지지된다.
 - 자산군 cascade와 거래소 간 안정적인 양의 전파는 지지되지 않는다.
+- 단순한 contemporaneous L2 spread, top-10 depth depletion, absolute book imbalance가
+  주문흐름 동조화를 실질적으로 설명한다는 가설은 OOS에서 지지되지 않는다.
 
 ## 연구 규칙
 
@@ -26,7 +28,7 @@
 
 ## 다음 연구
 
-OKX 400레벨 L2의 spread, depth, book imbalance 가용성 감사가 고정 기준을 통과했다.
-봉인된 `common_liquidity_order_flow_v1` protocol에 따라 180일·7자산 feature를 날짜별
-스트리밍 생성하고, 공통 유동성 충격이 체결 주문흐름 동조화의 일부를 설명하는지 OOS에서
-검정한다. L2 결과를 보기 전 protocol과 config seal을 검증해야 한다.
+`common_liquidity_order_flow_v1`은 완료됐으며 primary와 secondary gate 모두 통과하지
+못했다. 동일 표본에서 L2 level, threshold, 기간을 바꿔 유의한 조합을 찾지 않는다. 다음
+연구는 새 protocol을 봉인한 뒤에만 진행하며 derivatives liquidity, 더 짧은 event-time
+동학 또는 공통정보 proxy 중 하나를 독립 가설로 검정한다.

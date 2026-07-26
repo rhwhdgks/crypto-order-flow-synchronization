@@ -19,6 +19,8 @@ residual synchronization을 시간보존 null과 비교합니다.
 | OKX 6/7 방향 일치율 | 24.22% | 12.80% | 외부재현 |
 | Binance-OKX 동일 자산 평균 correlation | 0.27669 | 0.00097 | 지지 |
 | 교차거래소 극단 흐름 방향 일치율 | 87.19% | 50.34% | 지지 |
+| L2 조건화 후 OOS 상관 감소 | 0.00004 | 최소효과 0.02000 | 지지 안 됨 |
+| 극단 주문흐름·L2 stress overlap RR | 0.935 | 최소효과 1.25 | 지지 안 됨 |
 
 반면 BTC·ETH→알트코인과 Binance↔OKX의 안정적인 15분 양의 전파는 사전 gate를
 통과하지 못했습니다. 결과는 `market-wide order-flow synchronization`을 지지하지만
@@ -33,10 +35,15 @@ archive를 대상으로 결과와 무관한 가용성 감사를 완료했습니�
 확인됐습니다. ADA-USDT 하루 파일의 snapshot과 delta 1,987,014행을 전부 복원한 결과,
 파싱 오류와 timestamp 역행은 0건이었고 1분 표본 1,440개에서 교차 호가는 없었습니다.
 
-따라서 공통 spread 확대, depth 고갈, book imbalance가 주문흐름 동조화를 설명하는지
-검정하는 180일 확인 연구를 사전등록했습니다. 7개 자산 압축 다운로드는 약 212GB로
-추정되므로 날짜별 스트리밍 처리 후 원자료를 제거하고 feature만 보존합니다. 이 감사
-통과는 데이터가 연구 가능하다는 뜻이며 L2 alpha가 확인됐다는 뜻은 아닙니다.
+이후 180일·7자산 자료 1,260개를 날짜별로 처리해 7자산 완전 교집합 173일을 확보했고,
+봉인된 확인 연구를 완료했습니다. 공통 spread, top-10 depth depletion, absolute book
+imbalance를 development에서 적합해 OOS 주문흐름에서 제거했지만 평균 자산쌍 상관은
+0.12973에서 0.12969로만 감소했습니다. 감소량 0.00004는 사전 최소효과 0.02000에 크게
+못 미쳤고 두 OOS 절반에서도 안정적이지 않았습니다.
+
+극단 주문흐름과 L2 stress의 overlap도 shift-null보다 높지 않았습니다. 따라서 단순한
+contemporaneous L2 유동성 상태가 기존 주문흐름 동조화를 설명한다는 가설은 지지되지
+않습니다. 미래수익률을 사용하지 않았으므로 L2 alpha에 대한 판정은 아닙니다.
 
 ## 연구 설계
 
@@ -71,6 +78,7 @@ PYTHONPATH=src python -m pytest -q
 PYTHONPATH=src python scripts/verify_order_flow_synchronization.py
 PYTHONPATH=src python scripts/verify_okx_order_flow_external_validation.py
 PYTHONPATH=src python scripts/verify_cross_venue_order_flow_transmission.py
+PYTHONPATH=src python scripts/verify_common_liquidity_order_flow.py
 ```
 
 L2 감사는 공식 카탈로그를 다시 조회하고, 약 44MB인 ADA 하루 pilot archive를 내려받아
@@ -117,6 +125,7 @@ PYTHONPATH=src python scripts/run_order_flow_synchronization.py --config YOUR_CO
 PYTHONPATH=src python scripts/run_order_flow_futures_sensitivity.py --config YOUR_CONFIG.yaml
 PYTHONPATH=src python scripts/run_okx_order_flow_external_validation.py --config YOUR_CONFIG.yaml
 PYTHONPATH=src python scripts/run_cross_venue_order_flow_transmission.py --config YOUR_CONFIG.yaml
+PYTHONPATH=src python scripts/run_common_liquidity_order_flow.py
 ```
 
 OKX runner는 공식 월별 tick archive를 재시작 가능하게 수집합니다. Binance primary는

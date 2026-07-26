@@ -43,3 +43,5 @@ outputs/v2/common_liquidity_order_flow_v1/collection_state.json
 !outputs/v2/order_flow_synchronization_v1/synchronization_null_draws.parquet
 !outputs/v2/okx_order_flow_external_validation_v1/synchronization_null_draws.parquet
 !outputs/v2/cross_venue_order_flow_transmission_v1/synchronization_null_draws.parquet
+!outputs/v2/common_liquidity_order_flow_v1/primary_bootstrap_draws.parquet
+!outputs/v2/common_liquidity_order_flow_v1/secondary_null_draws.parquet

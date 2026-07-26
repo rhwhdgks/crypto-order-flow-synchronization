@@ -13,6 +13,7 @@ dynamic = ["dependencies"]
 [tool.setuptools]
 package-dir = {"" = "src"}
 py-modules = [
+  "common_liquidity_order_flow",
   "cross_venue_order_flow",
   "okx_l2_audit",
   "okx_l2_collection",
