@@ -1,0 +1,2 @@
+hypothesis,baseline_mean_pairwise_correlation,conditioned_mean_pairwise_correlation,effect,first_half_effect,second_half_effect,bootstrap_ci_lower,bootstrap_ci_upper,p_value_one_sided,oos_timestamps,oos_days,q_value_bh_fdr
+primary_correlation_reduction,0.12973243950923793,0.12968774187337084,4.469763586709141e-05,-7.76452235850128e-05,-0.00014906679451240357,-0.0002735919238884089,0.00037261916990107696,0.404,11229,117,0.792

@@ -1,0 +1,4 @@
+quality_gate,observed,threshold,passed,detail
+minimum_asset_valid_day_share,0.9722222222222222,0.95,True,minimum across 7 assets
+maximum_oos_excluded_day_share,0.025000000000000022,0.1,True,common OOS days=117/120
+common_complete_days,173.0,180.0,True,"development=56, oos=117"

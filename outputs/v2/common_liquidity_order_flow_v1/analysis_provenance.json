@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "pipeline_version": "common_liquidity_order_flow_v1",
+  "git_commit": "5e35af266191381bcc2df1f3a0a911e196a31370",
+  "config_sha256": "c0ccf4ae6016ca529e018af363b2070d1b52097feb7b9c6fdaafb5fe4f868011",
+  "input_manifest_sha256": "10521c703ac47c00f4de60397bee9aaba456d3fd7c1fc70033b936a87fbde350",
+  "generated_at_utc": "2026-07-26T04:10:35.487247+00:00",
+  "train_start": "2025-10-08T00:00:00Z",
+  "train_end": "2025-12-07T00:00:00Z",
+  "oos_start": "2025-12-07T00:00:00Z",
+  "oos_end": "2026-04-06T00:00:00Z",
+  "statistical_method": "development-frozen contemporaneous OLS; UTC-day bootstrap; half-year circular day-shift null",
+  "random_seed": 20260722
+}

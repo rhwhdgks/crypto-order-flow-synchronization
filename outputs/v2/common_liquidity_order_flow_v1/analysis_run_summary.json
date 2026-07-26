@@ -1,0 +1,8 @@
+{
+  "study": "common_liquidity_order_flow_v1",
+  "quality_gate_passed": true,
+  "primary_supported": false,
+  "secondary_supported": false,
+  "directional_alpha_tested": false,
+  "news_reddit_twitter_sentiment_used": false
+}

@@ -1,0 +1,13 @@
+{
+  "verified": true,
+  "preregistration_seal_verified": true,
+  "artifact_count_checked": 18,
+  "quality_gate_passed": true,
+  "decision_recomputation_match": true,
+  "bootstrap_repetitions": 499,
+  "null_repetitions": 499,
+  "primary_supported": false,
+  "secondary_supported": false,
+  "directional_alpha_tested": false,
+  "news_reddit_twitter_sentiment_used": false
+}

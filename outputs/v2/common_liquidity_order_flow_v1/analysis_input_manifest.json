@@ -1,0 +1,14 @@
+{
+  "files": [
+    {
+      "path": "outputs/v2/common_liquidity_order_flow_v1/intermediate/l2_feature_panel_15m.parquet",
+      "size": 5764778,
+      "sha256": "08d44c086aa4a1855aa5766b2f1321bc0deb17e8df32770459269f254357b5ce"
+    },
+    {
+      "path": "outputs/v2/okx_order_flow_external_validation_v1/intermediate/aggressor_residual_panel.parquet",
+      "size": 17827518,
+      "sha256": "2e60388bf01dd0e7a7ede6453e3ca2c427524087174b39b85b3943db82821b09"
+    }
+  ]
+}

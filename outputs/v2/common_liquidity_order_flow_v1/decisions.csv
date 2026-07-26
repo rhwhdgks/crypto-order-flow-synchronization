@@ -1,0 +1,4 @@
+decision,passed,classification,evidence
+common_liquidity_explains_part_of_synchronization,False,not_supported,"reduction=0.000045, q=0.792, halves=(-0.000078,-0.000149)"
+extreme_flow_liquidity_overlap,False,not_supported,"risk_ratio=0.9346, overlap=132, q=0.792"
+directional_alpha,False,not_tested,future returns are outside the sealed protocol
