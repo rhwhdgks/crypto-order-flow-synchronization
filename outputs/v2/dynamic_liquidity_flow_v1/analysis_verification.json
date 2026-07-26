@@ -1,0 +1,10 @@
+{
+  "verified": true,
+  "preregistration_seal_verified": true,
+  "artifact_count_checked": 13,
+  "test_family_size": 6,
+  "bootstrap_draws": 2994,
+  "decision_recomputation_match": true,
+  "primary_supported": false,
+  "directional_return_alpha_tested": false
+}

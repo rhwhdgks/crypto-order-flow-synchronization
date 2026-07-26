@@ -1,0 +1,48 @@
+study:
+  name: dynamic_liquidity_flow_v1
+  hypothesis: 현재 L2 유동성 상태가 이후 시장 공통 주문흐름 크기를 예측한다
+protocol:
+  path: research_protocols/dynamic_liquidity_flow_v1.md
+  seal_path: research_protocols/dynamic_liquidity_flow_v1.seal.json
+data:
+  input_panel_path: outputs/v2/common_liquidity_order_flow_v1/intermediate/common_liquidity_analysis_panel.parquet
+  interval_minutes: 15
+  horizons_minutes:
+  - 15
+  - 30
+  - 60
+sample_split:
+  development_start: '2025-10-08T00:00:00Z'
+  development_end_exclusive: '2025-12-07T00:00:00Z'
+  oos_start: '2025-12-07T00:00:00Z'
+  oos_end_exclusive: '2026-04-06T00:00:00Z'
+models:
+  forward_target: future_absolute_common_flow
+  forward_baseline:
+  - current_absolute_common_flow
+  - utc_time_controls
+  forward_augmented:
+  - current_absolute_common_flow
+  - common_spread
+  - common_depth_depletion
+  - common_abs_imbalance
+  - utc_time_controls
+  reverse_target: future_liquidity_stress
+  reverse_baseline:
+  - current_liquidity_stress
+  - utc_time_controls
+  reverse_augmented:
+  - current_liquidity_stress
+  - current_absolute_common_flow
+  - utc_time_controls
+analysis:
+  primary_direction: liquidity_to_flow
+  primary_horizon_minutes: 15
+  minimum_oos_mse_improvement: 0.01
+  bootstrap_repetitions: 499
+  random_seed: 20260726
+  fdr_alpha: 0.05
+output:
+  base_dir: outputs/v2/dynamic_liquidity_flow_v1
+logging:
+  level: INFO

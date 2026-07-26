@@ -16,6 +16,7 @@
 - 자산군 cascade와 거래소 간 안정적인 양의 전파는 지지되지 않는다.
 - 단순한 contemporaneous L2 spread, top-10 depth depletion, absolute book imbalance가
   주문흐름 동조화를 실질적으로 설명한다는 가설은 OOS에서 지지되지 않는다.
+- L2 상태의 15·30·60분 주문흐름 크기 예측과 역방향 예측도 OOS에서 지지되지 않는다.
 
 ## 연구 규칙
 
@@ -28,7 +29,7 @@
 
 ## 다음 연구
 
-`common_liquidity_order_flow_v1`은 완료됐으며 primary와 secondary gate 모두 통과하지
-못했다. 동일 표본에서 L2 level, threshold, 기간을 바꿔 유의한 조합을 찾지 않는다. 다음
-연구는 새 protocol을 봉인한 뒤에만 진행하며 derivatives liquidity, 더 짧은 event-time
-동학 또는 공통정보 proxy 중 하나를 독립 가설로 검정한다.
+`common_liquidity_order_flow_v1`과 `dynamic_liquidity_flow_v1`은 모두 완료됐으며
+confirmatory gate를 통과하지 못했다. 동일 표본에서 L2 level, threshold, 기간, horizon을
+바꿔 유의한 조합을 찾지 않는다. 다음 연구는 새 protocol을 봉인한 뒤에만 진행하며
+derivatives liquidity, 독립 표본 또는 식별 가정이 다른 공통정보 proxy를 검정한다.

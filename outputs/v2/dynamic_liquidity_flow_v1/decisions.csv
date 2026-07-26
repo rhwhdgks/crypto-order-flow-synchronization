@@ -1,0 +1,5 @@
+decision,passed,classification,evidence
+primary_15m_liquidity_to_flow,False,not_supported,"effect=-0.012541, q=1.000000, halves=-0.010031/-0.015319"
+positive_forward_horizons,False,descriptive_only,0/3 q-significant positive effects
+positive_reverse_horizons,False,descriptive_only,0/3 q-significant positive effects
+directional_return_alpha,False,not_tested,future returns and PnL are outside the sealed protocol

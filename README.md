@@ -21,6 +21,8 @@ residual synchronization을 시간보존 null과 비교합니다.
 | 교차거래소 극단 흐름 방향 일치율 | 87.19% | 50.34% | 지지 |
 | L2 조건화 후 OOS 상관 감소 | 0.00004 | 최소효과 0.02000 | 지지 안 됨 |
 | 극단 주문흐름·L2 stress overlap RR | 0.935 | 최소효과 1.25 | 지지 안 됨 |
+| L2→15분 뒤 주문흐름 MSE 개선 | -1.25% | 최소효과 +1.00% | 지지 안 됨 |
+| 주문흐름→15분 뒤 L2 MSE 개선 | +0.09% | BH-FDR q=0.972 | 지지 안 됨 |
 
 반면 BTC·ETH→알트코인과 Binance↔OKX의 안정적인 15분 양의 전파는 사전 gate를
 통과하지 못했습니다. 결과는 `market-wide order-flow synchronization`을 지지하지만
@@ -44,6 +46,11 @@ imbalance를 development에서 적합해 OOS 주문흐름에서 제거했지만 
 극단 주문흐름과 L2 stress의 overlap도 shift-null보다 높지 않았습니다. 따라서 단순한
 contemporaneous L2 유동성 상태가 기존 주문흐름 동조화를 설명한다는 가설은 지지되지
 않습니다. 미래수익률을 사용하지 않았으므로 L2 alpha에 대한 판정은 아닙니다.
+
+별도 봉인한 동적 연구에서도 현재 L2 상태를 추가한 모델은 15분, 30분, 60분 뒤 공통
+주문흐름 크기의 OOS MSE를 각각 1.25%, 1.72%, 1.65% 악화시켰습니다. 반대 방향인
+주문흐름→L2도 최대 개선이 0.09%였고 BH-FDR을 통과하지 못했습니다. 따라서 단순 L2
+유동성의 동시 설명과 1시간 이내 예측 가설은 모두 지지되지 않습니다.
 
 ## 연구 설계
 
@@ -79,6 +86,7 @@ PYTHONPATH=src python scripts/verify_order_flow_synchronization.py
 PYTHONPATH=src python scripts/verify_okx_order_flow_external_validation.py
 PYTHONPATH=src python scripts/verify_cross_venue_order_flow_transmission.py
 PYTHONPATH=src python scripts/verify_common_liquidity_order_flow.py
+PYTHONPATH=src python scripts/verify_dynamic_liquidity_flow.py
 ```
 
 L2 감사는 공식 카탈로그를 다시 조회하고, 약 44MB인 ADA 하루 pilot archive를 내려받아
@@ -126,6 +134,7 @@ PYTHONPATH=src python scripts/run_order_flow_futures_sensitivity.py --config YOU
 PYTHONPATH=src python scripts/run_okx_order_flow_external_validation.py --config YOUR_CONFIG.yaml
 PYTHONPATH=src python scripts/run_cross_venue_order_flow_transmission.py --config YOUR_CONFIG.yaml
 PYTHONPATH=src python scripts/run_common_liquidity_order_flow.py
+PYTHONPATH=src python scripts/run_dynamic_liquidity_flow.py
 ```
 
 OKX runner는 공식 월별 tick archive를 재시작 가능하게 수집합니다. Binance primary는

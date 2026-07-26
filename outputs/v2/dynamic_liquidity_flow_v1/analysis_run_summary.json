@@ -1,0 +1,8 @@
+{
+  "study": "dynamic_liquidity_flow_v1",
+  "primary_supported": false,
+  "tests": 6,
+  "bootstrap_repetitions_per_test": 499,
+  "directional_return_alpha_tested": false,
+  "news_reddit_twitter_sentiment_used": false
+}

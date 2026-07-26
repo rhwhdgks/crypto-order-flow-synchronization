@@ -1,0 +1,15 @@
+{
+  "sealed_at_utc": "2026-07-26T04:14:16Z",
+  "protocol_sha256": "5fe2cc07255119d9bc27cdd686a2da3b9108a7d8965a32c778f3c8ec426241a3",
+  "config_sha256": "46edaf9a718375616130633a5e7959a53e86299581d11447539d34444138d86a",
+  "results_observed_at_seal": false,
+  "known_prior_result": "contemporaneous_common_liquidity_explanation_not_supported",
+  "excluded_data_layers": [
+    "news",
+    "reddit",
+    "twitter_x",
+    "sentiment"
+  ],
+  "confirmatory_label": "dynamic_liquidity_to_common_flow_not_directional_alpha",
+  "verified": true
+}
