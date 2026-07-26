@@ -122,6 +122,23 @@ systemctl --user enable --now crypto-order-flow-l2-collector.service
 systemctl --user status crypto-order-flow-l2-collector.service
 ```
 
+## 1분 가격충격 잔차 연구
+
+공통 주문압력 대비 덜 움직인 자산의 15분 catch-up을 검정하는 별도 protocol을 봉인했다.
+1분 L2·aggressor flow와 10k/50k/100k USDT top-10 sweep 실행가격을 사용하며,
+Development 60일에서 모델과 95백분위 event threshold를 고정하고 OOS 120일에서만
+판정한다. Primary는 15분, 8bps, 자산당 10,000 USDT이며 동일 OOS에서 조건을 재선택하지
+않는다.
+
+```bash
+PYTHONPATH=src python scripts/show_price_impact_collection_status.py
+systemctl --user status crypto-price-impact-collector.service
+journalctl --user -u crypto-price-impact-collector.service -f
+```
+
+수집 service가 정상 완료되면 `crypto-price-impact-analysis.service`가 봉인된 OOS 분석과
+verifier를 자동 실행한다.
+
 ## 전체 재실행
 
 대용량 원자료는 Git에 포함하지 않습니다. 필요한 로컬 경로와 입력 schema는

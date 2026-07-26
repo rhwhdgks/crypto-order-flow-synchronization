@@ -33,3 +33,7 @@
 confirmatory gate를 통과하지 못했다. 동일 표본에서 L2 level, threshold, 기간, horizon을
 바꿔 유의한 조합을 찾지 않는다. 다음 연구는 새 protocol을 봉인한 뒤에만 진행하며
 derivatives liquidity, 독립 표본 또는 식별 가정이 다른 공통정보 proxy를 검정한다.
+
+`price_impact_residual_v1`은 결과 열람 전 봉인됐고 1분 L2·flow 수집 중이다. 수집 완료
+전 OOS 결과를 계산하지 않으며, 완료 후에도 봉인된 15분·8bps·10,000 USDT primary gate를
+그대로 적용한다.

@@ -1,0 +1,11 @@
+[Unit]
+Description=Sealed price-impact residual OOS analysis
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/findalpha/trading/crypto-order-flow-synchronization
+Environment=PYTHONPATH=src
+Environment=PYTHONUNBUFFERED=1
+ExecStart=%h/findalpha/trading/crypto-order-flow-synchronization/.venv/bin/python scripts/run_price_impact_residual.py
+ExecStart=%h/findalpha/trading/crypto-order-flow-synchronization/.venv/bin/python scripts/verify_price_impact_residual.py
+Nice=10

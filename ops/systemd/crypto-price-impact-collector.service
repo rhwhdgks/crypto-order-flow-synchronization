@@ -2,6 +2,7 @@
 Description=OKX one-minute price-impact feature collector
 Wants=network-online.target
 After=network-online.target
+OnSuccess=crypto-price-impact-analysis.service
 
 [Service]
 Type=simple
