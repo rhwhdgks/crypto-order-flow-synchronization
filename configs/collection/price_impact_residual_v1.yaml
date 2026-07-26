@@ -1,0 +1,15 @@
+source:
+  catalog_endpoint: https://www.okx.com/priapi/v5/broker/public/trade-data/download-link
+  raw_data_dir: data/okx_l2_price_impact_v1
+  timeout_seconds: 300
+  delete_archive_after_cache: true
+
+collection:
+  sample_interval_seconds: 60
+  minimum_initial_levels_per_side: 390
+  maximum_start_delay_ms: 1000
+  maximum_end_early_ms: 1000
+  sweep_quote_amounts: [10000, 50000, 100000]
+
+logging:
+  level: INFO

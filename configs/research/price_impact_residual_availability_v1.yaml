@@ -1,0 +1,22 @@
+study:
+  name: price_impact_residual_availability_v1
+
+data:
+  symbol: ADA-USDT
+  sample_date: "2024-04-08"
+  interval_minutes: 1
+  trade_archive_path: ../herding/data/okx_tick_archive/ADA-USDT/ADA-USDT-trades-2024-04.zip
+  l2_archive_path: data/okx_l2_audit/ADA-USDT-L2orderbook-400lv-2024-04-08.tar.gz
+  chunksize: 500000
+
+audit:
+  sample_interval_seconds: 60
+  sweep_quote_amounts: [10000, 50000, 100000]
+  minimum_l2_minute_share: 1.0
+  minimum_flow_to_l2_match_share: 1.0
+
+output:
+  base_dir: outputs/v2/price_impact_residual_availability_v1
+
+logging:
+  level: INFO

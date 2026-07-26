@@ -20,6 +20,9 @@ py-modules = [
   "okx_l2_collection",
   "okx_order_flow_external_validation",
   "order_flow_synchronization",
+  "price_impact_collection",
+  "price_impact_residual",
+  "price_impact_study",
   "stats_utils",
   "utils",
 ]

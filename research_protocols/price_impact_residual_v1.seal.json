@@ -1,0 +1,19 @@
+{
+  "study": "price_impact_residual_v1",
+  "sealed_at_utc": "2026-07-26T04:32:15Z",
+  "protocol_sha256": "48e31d0a6441bebe6738e4306eabc2b4682963911ef7b67a564fe03680d1ebbb",
+  "config_sha256": "f9acf91653ce67521c1e956968e5ac3f0b59e75dd194630196491da83a40ddf1",
+  "results_observed_at_seal": false,
+  "excluded_data_layers": [
+    "news",
+    "reddit",
+    "twitter_x",
+    "sentiment",
+    "derivatives"
+  ],
+  "primary_hypothesis": "15-minute catch-up after common-flow price-impact underreaction",
+  "primary_event_percentile": 0.95,
+  "primary_horizon_minutes": 15,
+  "primary_round_trip_cost_bps": 8,
+  "primary_sweep_quote_amount": 10000
+}

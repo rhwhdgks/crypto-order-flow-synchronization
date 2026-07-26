@@ -73,6 +73,9 @@ def test_snapshot_and_deltas_reconstruct_book(tmp_path: Path) -> None:
     assert len(samples) == 3
     assert samples.iloc[1]["best_ask"] == 0.502
     assert samples.iloc[1]["best_bid"] == 0.499
+    assert samples.iloc[1]["midpoint"] == 0.5005
+    assert samples.iloc[1]["buy_fill_ratio_quote_10000"] < 1.0
+    assert samples.iloc[1]["sell_fill_ratio_quote_10000"] < 1.0
 
 
 def test_quality_gate_requires_all_catalog_files() -> None:

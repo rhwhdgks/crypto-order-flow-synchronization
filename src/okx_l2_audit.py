@@ -191,6 +191,7 @@ def audit_l2_archive(
     expected_symbol: str,
     expected_date: str,
     sample_interval_seconds: int = 60,
+    sweep_quote_amounts: Iterable[float] = (10_000.0, 50_000.0, 100_000.0),
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     archive = Path(archive_path)
     asks: dict[float, tuple[float, int]] = {}
@@ -269,7 +270,14 @@ def audit_l2_archive(
                 interval_ms = sample_interval_seconds * 1_000
                 next_sample_ts = (timestamp_ms // interval_ms) * interval_ms
             if timestamp_ms >= next_sample_ts:
-                samples.append(_book_sample(timestamp_ms, asks, bids))
+                samples.append(
+                    _book_sample(
+                        timestamp_ms,
+                        asks,
+                        bids,
+                        sweep_quote_amounts=sweep_quote_amounts,
+                    )
+                )
                 interval_ms = sample_interval_seconds * 1_000
                 next_sample_ts = ((timestamp_ms // interval_ms) + 1) * interval_ms
 
@@ -471,6 +479,7 @@ def _book_sample(
     timestamp_ms: int,
     asks: Mapping[float, tuple[float, int]],
     bids: Mapping[float, tuple[float, int]],
+    sweep_quote_amounts: Iterable[float] = (10_000.0, 50_000.0, 100_000.0),
 ) -> dict:
     if not asks or not bids:
         return {
@@ -489,6 +498,7 @@ def _book_sample(
         "crossed": best_bid >= best_ask,
         "best_bid": best_bid,
         "best_ask": best_ask,
+        "midpoint": midpoint,
         "spread_bps": (best_ask - best_bid) / midpoint * 10_000,
         "ask_levels": len(asks),
         "bid_levels": len(bids),
@@ -502,7 +512,49 @@ def _book_sample(
         result[f"book_imbalance_{level_count}"] = (
             (bid_depth - ask_depth) / total if total > 0 else math.nan
         )
+    top_10_asks = [(price, asks[price][0]) for price in ask_prices[:10]]
+    top_10_bids = [(price, bids[price][0]) for price in bid_prices[:10]]
+    for quote_amount in sweep_quote_amounts:
+        suffix = _quote_amount_suffix(quote_amount)
+        buy_vwap, buy_fill = _sweep_vwap(top_10_asks, quote_amount)
+        sell_vwap, sell_fill = _sweep_vwap(top_10_bids, quote_amount)
+        result[f"buy_vwap_{suffix}"] = buy_vwap
+        result[f"sell_vwap_{suffix}"] = sell_vwap
+        result[f"buy_fill_ratio_{suffix}"] = buy_fill
+        result[f"sell_fill_ratio_{suffix}"] = sell_fill
+        result[f"buy_impact_bps_{suffix}"] = (
+            (buy_vwap / midpoint - 1.0) * 10_000 if np.isfinite(buy_vwap) else math.nan
+        )
+        result[f"sell_impact_bps_{suffix}"] = (
+            (1.0 - sell_vwap / midpoint) * 10_000 if np.isfinite(sell_vwap) else math.nan
+        )
     return result
+
+
+def _sweep_vwap(levels: Iterable[tuple[float, float]], quote_amount: float) -> tuple[float, float]:
+    target = float(quote_amount)
+    if target <= 0:
+        raise ValueError("quote_amount must be positive")
+    quote_filled = 0.0
+    base_filled = 0.0
+    for price, available_base in levels:
+        available_quote = float(price) * float(available_base)
+        consumed_quote = min(available_quote, target - quote_filled)
+        if consumed_quote <= 0:
+            break
+        quote_filled += consumed_quote
+        base_filled += consumed_quote / float(price)
+        if quote_filled >= target:
+            break
+    vwap = quote_filled / base_filled if base_filled > 0 else math.nan
+    return vwap, min(quote_filled / target, 1.0)
+
+
+def _quote_amount_suffix(quote_amount: float) -> str:
+    amount = float(quote_amount)
+    if amount.is_integer():
+        return f"quote_{int(amount)}"
+    return f"quote_{str(amount).replace('.', '_')}"
 
 
 def _optional_float(value: object) -> float:
