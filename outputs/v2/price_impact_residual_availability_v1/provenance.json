@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "pipeline_version": "price_impact_residual_availability_v1",
+  "git_commit": "a85bac0d8d688beb579c1db7a9f1e859f272b066",
+  "config_sha256": "a6533e9002574bc37e60a6c760a19214e18bfd0caaa2d1bb8c00a4940dbc320e",
+  "input_manifest_sha256": "b03c9b262357fd2a353fffd569094f8cff1885be77d2b8584c46b3df370c56dd",
+  "generated_at_utc": "2026-07-26T04:52:32.423921+00:00",
+  "train_start": null,
+  "train_end": null,
+  "oos_start": null,
+  "oos_end": null,
+  "statistical_method": "fixed-file one-minute point-in-time availability audit",
+  "random_seed": null
+}

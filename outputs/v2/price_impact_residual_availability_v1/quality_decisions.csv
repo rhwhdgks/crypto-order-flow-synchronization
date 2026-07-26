@@ -1,0 +1,10 @@
+quality_gate,passed,evidence
+full_l2_day,True,share=1.000000
+all_trade_minutes_match_l2,True,share=1.000000
+unique_minute_keys,True,duplicates=0
+core_features_complete,True,missing=0
+point_in_time_ordering,True,violations=0
+sweep_features_10000,True,all minutes populated
+sweep_features_50000,True,all minutes populated
+sweep_features_100000,True,all minutes populated
+h2_preregistration_ready,True,all fixed one-minute availability gates passed
