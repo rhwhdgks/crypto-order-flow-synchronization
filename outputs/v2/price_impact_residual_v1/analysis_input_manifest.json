@@ -1,0 +1,14 @@
+{
+  "files": [
+    {
+      "path": "outputs/v2/price_impact_residual_v1/intermediate/l2_feature_panel_1m.parquet",
+      "size": 315234632,
+      "sha256": "bef5da96998a046af4295398e86ceb3bb684a63ba29d9022b234a4be8d74431c"
+    },
+    {
+      "path": "outputs/v2/price_impact_residual_v1/intermediate/flow_feature_panel_1m.parquet",
+      "size": 125474145,
+      "sha256": "ceb70d84d41921c684f171c50058ac61c12c9d61d0d822607ba281dda33dee4f"
+    }
+  ]
+}

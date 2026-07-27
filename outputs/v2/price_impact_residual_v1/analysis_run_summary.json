@@ -1,0 +1,6 @@
+{
+  "study": "price_impact_residual_v1",
+  "primary_supported": false,
+  "directional_alpha_tested": true,
+  "news_reddit_twitter_sentiment_used": false
+}

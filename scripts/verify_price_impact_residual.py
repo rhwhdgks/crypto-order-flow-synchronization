@@ -60,6 +60,7 @@ def main() -> None:
         "primary_gate_present": decisions["gate"].eq("primary_supported").any(),
         "fdr_finite": inference["q_value"].notna().all(),
     }
+    checks = {name: bool(passed) for name, passed in checks.items()}
     print(json.dumps(checks, ensure_ascii=False, indent=2))
     if not all(checks.values()):
         raise SystemExit(1)

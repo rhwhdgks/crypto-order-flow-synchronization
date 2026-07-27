@@ -1,0 +1,8 @@
+gate,passed,evidence
+minimum_non_overlap_events,True,events=8918
+positive_mean_and_median_after_8bps,False,mean=-0.00105177;median=-0.00104111
+positive_oos_halves,False,"half_means=[-0.0010165235326469965, -0.0010870220008421913]"
+minimum_assets_positive,False,positive_assets=0
+primary_top10_capacity_positive,False,capacity_quote=10000;mean=-0.00105177
+bootstrap_fdr,False,q=1.000000
+primary_supported,False,all sealed H2 gates passed

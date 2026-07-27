@@ -40,6 +40,12 @@ outputs/v2/common_liquidity_order_flow_v1/collection_state.json
 outputs/v2/price_impact_residual_v1/collection_progress.csv
 outputs/v2/price_impact_residual_v1/collection_state.json
 
+# Price-impact event and position ledgers are reproducible local analysis artifacts.
+outputs/v2/price_impact_residual_v1/event_ledger.csv
+outputs/v2/price_impact_residual_v1/event_returns.csv
+outputs/v2/price_impact_residual_v1/position_ledger.csv
+outputs/v2/price_impact_residual_v1/position_selection.csv
+
 # Null draws are intentionally small and required by result verifiers.
 *.parquet
 !outputs/v2/order_flow_synchronization_v1/synchronization_null_draws.parquet
