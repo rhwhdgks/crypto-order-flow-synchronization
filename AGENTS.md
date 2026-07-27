@@ -17,6 +17,8 @@
 - 단순한 contemporaneous L2 spread, top-10 depth depletion, absolute book imbalance가
   주문흐름 동조화를 실질적으로 설명한다는 가설은 OOS에서 지지되지 않는다.
 - L2 상태의 15·30·60분 주문흐름 크기 예측과 역방향 예측도 OOS에서 지지되지 않는다.
+- 공통 주문압력 대비 가격충격 잔차를 이용한 15분 catch-up alpha도 봉인된 OOS에서
+  지지되지 않는다.
 
 ## 연구 규칙
 
@@ -34,6 +36,7 @@ confirmatory gate를 통과하지 못했다. 동일 표본에서 L2 level, thres
 바꿔 유의한 조합을 찾지 않는다. 다음 연구는 새 protocol을 봉인한 뒤에만 진행하며
 derivatives liquidity, 독립 표본 또는 식별 가정이 다른 공통정보 proxy를 검정한다.
 
-`price_impact_residual_v1`은 결과 열람 전 봉인됐고 1분 L2·flow 수집 중이다. 수집 완료
-전 OOS 결과를 계산하지 않으며, 완료 후에도 봉인된 15분·8bps·10,000 USDT primary gate를
-그대로 적용한다.
+`price_impact_residual_v1`도 완료됐다. 봉인된 15분·8bps·10,000 USDT primary에서
+8,918건의 비중첩 사건을 평가했지만 평균·중앙값 수익률, OOS 양 구간, 자산별 결과,
+capacity 및 bootstrap FDR gate를 통과하지 못했다. 동일 OOS에서 방향, threshold,
+horizon 또는 비용 조건을 바꿔 alpha를 찾지 않는다.

@@ -130,14 +130,20 @@ Development 60일에서 모델과 95백분위 event threshold를 고정하고 OO
 판정한다. Primary는 15분, 8bps, 자산당 10,000 USDT이며 동일 OOS에서 조건을 재선택하지
 않는다.
 
+수집과 OOS 분석은 완료됐다. Primary 8,918건의 평균 순수익률은 -0.1052%,
+중앙값은 -0.1041%였고 모든 confirmatory gate가 실패해 catch-up alpha는 지지되지
+않았다. 상세 결과는
+[`price_impact_residual_report.md`](outputs/v2/price_impact_residual_v1/price_impact_residual_report.md)에
+있다.
+
 ```bash
 PYTHONPATH=src python scripts/show_price_impact_collection_status.py
 systemctl --user status crypto-price-impact-collector.service
 journalctl --user -u crypto-price-impact-collector.service -f
 ```
 
-수집 service가 정상 완료되면 `crypto-price-impact-analysis.service`가 봉인된 OOS 분석과
-verifier를 자동 실행한다.
+신규 표본으로 수집 service를 실행하면 정상 완료 후
+`crypto-price-impact-analysis.service`가 봉인된 OOS 분석과 verifier를 자동 실행한다.
 
 ## 전체 재실행
 
